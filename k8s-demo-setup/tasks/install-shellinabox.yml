@@ -17,7 +17,7 @@
   copy:
     remote_src: yes
     src: '/etc/shellinabox/options-available/{{ item.src }}'
-    dest: '/etc/shellinabox/options-available/{{ item.dst }}'
+    dest: '/etc/shellinabox/options-available/{{ item.dest }}'
   loop:
     - { src: '00+Black on White.css', dest: '00_Black on White.css' }
     - { src: '00_White On Black.css', dest: '00+White On Black.css' }
