@@ -1,0 +1,40 @@
+---
+- name: Install shellinabox
+  apt:
+    name: shellinabox
+    state: present
+    update_cache: yes
+
+- name: Remove old terminal color link
+  file:
+    path: {{ item }}
+    state: absent
+  with_item:
+    - /etc/shellinabox/options-enabled/00+Black on White.css  
+    - /etc/shellinabox/options-enabled/00_White On Black.css
+
+- name: Copy CSS files to enable White on Black
+  copy:
+    remote_src: yes
+    src: '/etc/shellinabox/options-available/{{ item.src }}'
+    dest: '/etc/shellinabox/options-available/{{ item.dst }}'
+  loop:
+    - { src: '00+Black on White.css', dest: '00_Black on White.css' }
+    - { src: '00_White On Black.css', dest: '00+White On Black.css' }
+
+- name: Remove old CSS files
+  file:
+    path: '/etc/shellinabox/options-available/{{ item }}'
+    state: absent
+  with_item:
+    - '00+Black on White.css'
+    - '00_White On Black.css'
+
+- name: Create softlink for the color css files
+  file:
+    src: '/etc/shellinabox/options-available/{{ item }}'
+    dest: '/etc/shellinabox/options-enabled/{{ item }}'
+    state: link
+  with_item:
+    - '00_Black on White.css'
+    - '00+White On Black.css'
