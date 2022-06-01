@@ -33,7 +33,7 @@ ansible [core 2.12.1]
 1. Pull the git repo:
 
 ```
-$ git clone https://github.com/mohanadelamin/k8s-ansible-demo-setup.git
+$ git clone https://github.com/mohanadelamin/k8s-demo-setup.git
 
 ```
 
