@@ -38,3 +38,8 @@
   with_items:
     - '00_Black on White.css'
     - '00+White On Black.css'
+
+- name: Restart shellinabox service
+  service:
+    name: shellinabox
+    state: restarted
