@@ -39,6 +39,13 @@
     - '00_Black on White.css'
     - '00+White On Black.css'
 
+- name: Disable SSL
+  lineinfile:
+   path: /etc/default/shellinabox
+   regexp: '^SHELLINABOX_ARGS=.*'
+   line: 'SHELLINABOX_ARGS=\"--no-beep --disable-ssl\"'
+   backrefs: yes
+
 - name: Restart shellinabox service
   service:
     name: shellinabox
